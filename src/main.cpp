@@ -1,9 +1,4 @@
 #include <M5Core2.h>
-// #include <M5GFX.h>
-
-void stopPressed(Event &e);
-void resetPressed(Event &e);
-void startPressed(Event &e);
 
 ButtonColors stop_on_clrs = {RED, WHITE, WHITE};
 ButtonColors start_on_clrs = {GREEN, WHITE, WHITE};
@@ -47,8 +42,8 @@ void drawTime(int x, int y) {
   int seconds = (elapsed / 1000) % 60;
   int milliseconds = (elapsed % 1000) / 10;
 
-  currentTime = addLeadingZero(hours) + ":" +addLeadingZero(minutes) + ":" + addLeadingZero(seconds) + "." +
-                addLeadingZero(milliseconds);
+  currentTime = addLeadingZero(hours) + ":" + addLeadingZero(minutes) + ":" +
+                addLeadingZero(seconds) + "." + addLeadingZero(milliseconds);
 
   M5.Lcd.drawString(currentTime, x, y, 7);
 }
