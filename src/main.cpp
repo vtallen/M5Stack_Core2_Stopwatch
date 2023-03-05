@@ -4,9 +4,10 @@ ButtonColors stop_on_clrs = {RED, WHITE, WHITE};
 ButtonColors start_on_clrs = {GREEN, WHITE, WHITE};
 ButtonColors off_clrs = {BLACK, WHITE, WHITE};
 
-Button start(10, 150, 120, 80, false, "START", off_clrs, start_on_clrs,
-             CC_DATUM);
-Button stop(190, 150, 120, 80, false, "STOP", off_clrs, stop_on_clrs, CC_DATUM);
+Button start_btn(10, 150, 120, 80, false, "START", off_clrs, start_on_clrs,
+                 CC_DATUM);
+Button stop_btn(190, 150, 120, 80, false, "STOP", off_clrs, stop_on_clrs,
+                CC_DATUM);
 
 bool running = false;
 bool stoppedBefore = false;
@@ -16,6 +17,7 @@ unsigned long vibrateEnd;
 
 int startTime = 0;
 int elapsed = 0;
+
 String currentTime;
 
 void vibrate(int milliseconds) {
@@ -51,7 +53,7 @@ void drawTime(int x, int y) {
 void startPressed(Event &e) {
   vibrate(250);
   if (!running) {
-    stop.setLabel("STOP");
+    stop_btn.setLabel("STOP");
     running = true;
     stoppedBefore = false;
     startTime = millis() - elapsed;
@@ -67,9 +69,9 @@ void stopPressed(Event &e) {
     if (stoppedBefore) {
       elapsed = 0;
       startTime = 0;
-      stop.setLabel("STOP");
+      stop_btn.setLabel("STOP");
     } else {
-      stop.setLabel("RESET");
+      stop_btn.setLabel("RESET");
       stoppedBefore = true;
       elapsed = millis() - startTime;
     }
@@ -81,8 +83,8 @@ void stopPressed(Event &e) {
 void setup() {
   M5.begin();
   M5.Buttons.draw();
-  start.addHandler(startPressed);
-  stop.addHandler(stopPressed);
+  start_btn.addHandler(startPressed);
+  stop_btn.addHandler(stopPressed);
 }
 
 void loop() {
