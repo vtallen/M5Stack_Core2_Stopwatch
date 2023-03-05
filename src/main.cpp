@@ -41,11 +41,13 @@ void drawTime(int x, int y) {
   if (running) {
     elapsed = millis() - startTime;
   }
+
+  int hours = elapsed / 3600000;
   int minutes = elapsed / 60000;
   int seconds = (elapsed / 1000) % 60;
   int milliseconds = (elapsed % 1000) / 10;
 
-  currentTime = addLeadingZero(minutes) + ":" + addLeadingZero(seconds) + "." +
+  currentTime = addLeadingZero(hours) + ":" +addLeadingZero(minutes) + ":" + addLeadingZero(seconds) + "." +
                 addLeadingZero(milliseconds);
 
   M5.Lcd.drawString(currentTime, x, y, 7);
