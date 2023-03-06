@@ -40,7 +40,7 @@ void drawTime(int x, int y) {
   }
 
   int hours = elapsed / 3600000;
-  int minutes = elapsed / 60000;
+  int minutes = (elapsed / 60000) - (hours * 60);
   int seconds = (elapsed / 1000) % 60;
   int milliseconds = (elapsed % 1000) / 10;
 
