@@ -52,8 +52,10 @@ void drawTime(int x, int y) {
 
 void startPressed(Event &e) {
   vibrate(250);
+  stop_btn.setLabel("STOP");
+  M5.Buttons.draw();
+
   if (!running) {
-    stop_btn.setLabel("STOP");
     running = true;
     stoppedBefore = false;
     startTime = millis() - elapsed;
@@ -67,13 +69,13 @@ void stopPressed(Event &e) {
   if (millis() - lastStopTime > 500) {
     running = false;
     if (stoppedBefore) {
+      stop_btn.setLabel("STOP");
       elapsed = 0;
       startTime = 0;
-      stop_btn.setLabel("STOP");
     } else {
-      stop_btn.setLabel("RESET");
       stoppedBefore = true;
       elapsed = millis() - startTime;
+      stop_btn.setLabel("RESET");
     }
 
     lastStopTime = millis();
